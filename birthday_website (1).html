@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f0eb">
+<title>A Little Celebration — Happy Birthday</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --paper:#f7f0eb;
+  --ink:#342723;
+  --muted:#88766e;
+  --rose:#bd827d;
+  --wine:#754c50;
+  --line:#e7d9d1;
+  --white:#fffaf6;
+}
+
+* {box-sizing:border-box}
+
+html {scroll-behavior:smooth}
+
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+
+.grain {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.12;
+  z-index:5;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
+
+nav {
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 7vw;
+  border-bottom:1px solid #e9ddd6;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:10px;
+  color:var(--muted);
+}
+
+.brand {
+  font-family:"Playfair Display",serif;
+  font-size:18px;
+  letter-spacing:.03em;
+  text-transform:none;
+  color:var(--wine);
+}
+
+.nav-note {display:flex;gap:25px}
+
+.hero {
+  min-height:calc(100vh - 76px);
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  align-items:center;
+  gap:6vw;
+  padding:7vh 9vw 9vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before {
+  content:"";
+  position:absolute;
+  width:440px;
+  height:440px;
+  border:1px solid #e5d4cb;
+  border-radius:50%;
+  right:-180px;
+  top:5%;
+  box-shadow:0 0 0 35px rgba(255,250,246,.22),
+             0 0 0 70px rgba(255,250,246,.16);
+  pointer-events:none;
+}
+
+.eyebrow {
+  font-size:10px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--rose);
+  font-weight:600;
+  margin-bottom:25px;
+}
+
+h1,h2,h3 {
+  font-family:"Playfair Display",serif;
+  font-weight:500;
+}
+
+h1 {
+  font-size:clamp(58px,8vw,112px);
+  line-height:.96;
+  letter-spacing:-.055em;
+  margin:0;
+  color:var(--wine);
+}
+
+h1 em {color:var(--rose)}
+
+.hero-copy {
+  font-size:14px;
+  line-height:1.9;
+  color:var(--muted);
+  max-width:390px;
+  margin:28px 0 30px;
+}
+
+.date-pill {
+  display:inline-flex;
+  align-items:center;
+  gap:13px;
+  border:1px solid #d9c5bc;
+  border-radius:40px;
+  padding:12px 18px;
+  color:var(--wine);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.date-pill b {
+  font-family:"Playfair Display",serif;
+  font-size:20px;
+}
+
+/* PHOTO ON LEFT */
+
+.hero-photo-wrap {
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:500px;
+  animation:fadeUp 1.2s ease both;
+}
+
+.photo-orbit {
+  position:absolute;
+  width:430px;
+  height:430px;
+  border:1px solid #e6d3ca;
+  border-radius:50%;
+  z-index:0;
+}
+
+.hero-photo-frame {
+  width:min(100%,390px);
+  height:490px;
+  padding:12px;
+  background:#fffaf6;
+  border:1px solid #e7d5cc;
+  border-radius:190px 190px 12px 12px;
+  box-shadow:0 24px 65px rgba(91,57,49,.15);
+  position:relative;
+  z-index:1;
+  transform:rotate(-2deg);
+  animation:floatPhoto 6s ease-in-out infinite;
+  transition:transform .5s,box-shadow .5s;
+}
+
+.hero-photo-frame:hover {
+  transform:rotate(0deg) scale(1.025);
+  box-shadow:0 30px 80px rgba(91,57,49,.22);
+}
+
+.hero-photo {
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  border-radius:180px 180px 7px 7px;
+  filter:saturate(.88);
+  transition:filter .5s;
+}
+
+.hero-photo-frame:hover .hero-photo {
+  filter:saturate(1.05);
+}
+
+.photo-caption {
+  position:absolute;
+  bottom:28px;
+  right:-25px;
+  background:var(--white);
+  padding:15px 20px;
+  box-shadow:0 8px 30px #3e28251c;
+  font-family:"Playfair Display",serif;
+  font-style:italic;
+  color:var(--wine);
+  font-size:16px;
+  transform:rotate(4deg);
+  z-index:2;
+}
+
+.photo-sparkle {
+  position:absolute;
+  color:var(--rose);
+  font-size:25px;
+  z-index:2;
+  animation:twinkle 2.8s ease-in-out infinite;
+}
+
+.sparkle-one {top:10%;left:4%}
+.sparkle-two {bottom:13%;left:9%;animation-delay:1s}
+
+/* MESSAGE SECTION */
+
+.section {padding:110px 10vw}
+
+.section-head {
+  text-align:center;
+  margin:0 auto 55px;
+  max-width:620px;
+}
+
+.section-head .eyebrow {margin-bottom:15px}
+
+.section-head h2 {
+  font-size:clamp(38px,5vw,58px);
+  margin:0;
+  color:var(--wine);
+}
+
+.section-head p {
+  font-size:13px;
+  line-height:1.9;
+  color:var(--muted);
+  margin:18px auto 0;
+  max-width:450px;
+}
+
+.note-section {background:var(--white)}
+
+.note-card {
+  max-width:850px;
+  margin:auto;
+  border:1px solid var(--line);
+  padding:clamp(28px,6vw,65px);
+  position:relative;
+  background:#fffdfa;
+}
+
+.note-card:before {
+  content:"“";
+  position:absolute;
+  top:10px;
+  left:25px;
+  font:100px "Playfair Display",serif;
+  color:#eadbd3;
+  line-height:1;
+}
+
+.note-title {
+  text-align:center;
+  font:italic 22px "Playfair Display",serif;
+  color:var(--rose);
+  margin:0 0 30px;
+}
+
+.lines {
+  display:grid;
+  max-width:680px;
+  margin:auto;
+}
+
+.line {
+  min-height:48px;
+  border-bottom:1px solid #eadfd9;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.line span {
+  font-family:"Playfair Display",serif;
+  font-style:italic;
+  font-size:15px;
+  color:#c49b91;
+  width:22px;
+}
+
+.line p {
+  margin:0;
+  color:#a38e85;
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* WISH CARDS */
+
+.details {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  max-width:950px;
+  margin:auto;
+}
+
+.detail {
+  padding:34px 25px;
+  border:1px solid var(--line);
+  text-align:center;
+  background:#fbf5f1;
+  transition:transform .35s,box-shadow .35s;
+}
+
+.detail:hover {
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px #5c3b3215;
+}
+
+.detail .symbol {
+  font-size:25px;
+  color:var(--rose);
+}
+
+.detail h3 {
+  font-size:23px;
+  color:var(--wine);
+  margin:14px 0 8px;
+}
+
+.detail p {
+  font-size:12px;
+  line-height:1.8;
+  color:var(--muted);
+  margin:0;
+}
+
+/* CLOSING */
+
+.closing {
+  background:var(--wine);
+  color:#f9eee8;
+  text-align:center;
+  padding:100px 20px;
+}
+
+.closing .eyebrow {color:#e4b9ad}
+
+.closing h2 {
+  font-size:clamp(42px,7vw,76px);
+  line-height:1.1;
+  margin:0 auto 18px;
+  max-width:700px;
+}
+
+.closing p {
+  font-size:13px;
+  letter-spacing:.08em;
+  color:#e8d3cb;
+}
+
+footer {
+  padding:24px;
+  text-align:center;
+  color:#a18d84;
+  font-size:10px;
+  letter-spacing:.12em;
+}
+
+/* ANIMATIONS */
+
+@keyframes floatPhoto {
+  0%,100% {translate:0 0}
+  50% {translate:0 -12px}
+}
+
+@keyframes fadeUp {
+  from {opacity:0;transform:translateY(25px)}
+  to {opacity:1;transform:translateY(0)}
+}
+
+@keyframes twinkle {
+  0%,100% {opacity:.45;transform:scale(.85) rotate(0)}
+  50% {opacity:1;transform:scale(1.2) rotate(15deg)}
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:760px) {
+  nav {
+    padding:0 6vw;
+    height:64px;
+  }
+
+  .nav-note {gap:12px}
+  .nav-note span:first-child {display:none}
+
+  .hero {
+    grid-template-columns:1fr;
+    padding:55px 8vw 75px;
+    gap:20px;
+  }
+
+  .hero-photo-wrap {
+    grid-row:1;
+    min-height:390px;
+  }
+
+  .hero-photo-frame {
+    height:390px;
+    width:min(82%,320px);
+  }
+
+  .photo-caption {
+    right:-12px;
+    font-size:14px;
+  }
+
+  .photo-orbit {
+    width:340px;
+    height:340px;
+  }
+
+  .hero-copy {max-width:100%}
+
+  .section {padding:80px 7vw}
+
+  .details {grid-template-columns:1fr}
+
+  .section-head {margin-bottom:38px}
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <a class="brand" href="#">a little celebration</a>
+  <div class="nav-note">
+    <span>made with love</span>
+    <span>✦ &nbsp; 31 October</span>
+  </div>
+</nav>
+
+<main>
+
+<!-- FIRST PAGE -->
+
+<section class="hero">
+
+  <!-- LEFT: HER PHOTO -->
+
+  <div class="hero-photo-wrap">
+
+    <div class="photo-orbit"></div>
+
+    <span class="photo-sparkle sparkle-one">✧</span>
+    <span class="photo-sparkle sparkle-two">✦</span>
+
+    <div class="hero-photo-frame">
+      <img
+        src="C:\Users\Parth Bhadale\OneDrive\画像\Screenshots\Screenshot 2026-10-30 205756.png"
+        alt="Birthday Girl"
+        class="hero-photo">
+    </div>
+
+    <div class="photo-caption">
+      the girl of the day ♡
+    </div>
+
+  </div>
+
+  <!-- RIGHT: BIRTHDAY TEXT -->
+
+  <div>
+    <div class="eyebrow">A day as lovely as you are</div>
+
+    <h1>
+      Happy<br>
+      <em>Birthday,</em><br>
+      Samu.
+    </h1>
+
+    <p class="hero-copy">
+      Today is all about celebrating you — your beautiful heart,
+      your little quirks, and all the magic you bring into the lives around you.
+    </p>
+
+    <div class="date-pill">
+      <b>31</b>
+      <span>October · Your special day</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- PERSONAL MESSAGE -->
+
+<section class="section note-section" id="message">
+
+  <div class="section-head">
+    <div class="eyebrow">A few words for you</div>
+    <h2>Things I adore about you</h2>
+    <p>
+      Some people make ordinary days feel special.
+      You're one of those people. Here's a little space
+      for everything I want to say.
+    </p>
+  </div>
+
+  <div class="note-card">
+
+    <p class="note-title">Dear Samu,</p>
+
+    <div class="lines">
+
+      <div class="line"><span>01</span><p>HAPPIEST BIRTHDAY TO MY FAV PERSON</p></div>
+      <div class="line"><span>02</span><p>You're my everything.</p></div>
+      <div class="line"><span>03</span><p>You're the person I can tell all my secrets to, the first person I want to talk to when I wake up, and the last person I want to talk to before I fall asleep.</p></div>
+      <div class="line"><span>04</span><p>You're the first person I want to share my happiness with whenever something good happens. And whenever life gets difficult or something troubles me, you're the person I turn to for comfort.</p></div>
+      <div class="line"><span>05</span><p>What makes you different from everyone else…</p></div>
+      <div class="line"><span>06</span><p>You're so much more to me than just my lover. You're my best friend, my favourite person, my comfort, and my strength.</p></div>
+      <div class="line"><span>07</span><p>I feel incredibly lucky to have you in my life. I just want you to know how happy I am to have you by my side.</p></div>
+      <div class="line"><span>08</span><p>I love you. More than words can ever explain.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BIRTHDAY WISHES -->
+
+<section class="section">
+
+  <div class="section-head">
+    <div class="eyebrow">A little birthday wish</div>
+    <h2>May this year bring you…</h2>
+    <p>
+      More moments that feel like sunshine, more reasons
+      to laugh, and more dreams turning into memories.
+    </p>
+  </div>
+
+  <div class="details">
+
+    <article class="detail">
+      <div class="symbol">✧</div>
+      <h3>Little joys</h3>
+      <p>
+        10hrs of sleep, favourite songs, unexpected Icecreams and all the small things that make You Smile.
+      </p>
+    </article>
+
+    <article class="detail">
+      <div class="symbol">♡</div>
+      <h3>Good people</h3>
+      <p>
+        Love that feels safe, friendships that feel like home,
+        and people who celebrate the real you.
+      </p>
+    </article>
+
+    <article class="detail">
+      <div class="symbol">☼</div>
+      <h3>Big dreams</h3>
+      <p>
+        New adventures, brave beginnings and every beautiful
+        thing your heart has been wishing for.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<!-- FINAL MESSAGE -->
+
+<section class="closing">
+  <div class="eyebrow">To another beautiful chapter</div>
+  <h2>
+    Keep being your<br>
+    <em>wonderful self.</em>
+  </h2>
+  <p>YOU DESERVE ALL THE HAPPINESS IN THE WORLD &nbsp; ♡</p>
+</section>
+
+</main>
+
+<footer>
+  MADE WITH ♡ · 31 OCTOBER · A DAY JUST FOR YOU
+</footer>
+
+</body>
+</html>
